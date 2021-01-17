@@ -1,0 +1,19 @@
+cabal-version:       >= 1.10
+name:                K-NN
+version:             0.1.0
+synopsis:            K-Nearest Neighbours Algorithm
+bug-reports:         https://github.com/TheLusitanianKing/K-NN/issues
+license:             MIT
+license-file:        LICENSE
+author:              The Lusitanian King
+maintainer:          alexlusitanian@gmail.com
+category:            Machine Learning
+build-type:          Simple
+extra-source-files:  CHANGELOG.md, README.md
+
+executable K-NN
+  main-is:             Main.hs
+  -- other-modules:
+  build-depends:       base >= 4.13 && < 4.14
+  hs-source-dirs:      src
+  default-language:    Haskell2010
