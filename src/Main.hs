@@ -1,4 +1,7 @@
 module Main where
 
+import Classifier
+import Liga
+
 main :: IO ()
-main = putStrLn "Hello, Haskell!"
+main = parseCSVFile "data/liga-nos.csv" >>= print
