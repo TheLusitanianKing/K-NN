@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module LigaClassifier where
+module LeagueClassifier where
 
 import Data.List (sortBy)
 import Data.Maybe (mapMaybe)
