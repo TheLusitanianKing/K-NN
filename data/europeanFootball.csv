@@ -1,0 +1,144 @@
+Club name, Stadium capacity, Major European trophies, Major Domestic trophies, Market value (in M), International Players
+-,         2,                4,                       3,                       4,                   1
+Sport Lisboa e Benfica, 65000, 2, 78, 312.00, 8
+Futebol Clube do Porto, 50399, 7, 70, 243.03, 8
+Sporting Clube de Portugal, 50080, 0, 35, 149.40, 4
+Sporting Clube de Braga, 30286, 0, 4, 96.65, 2
+Vitória Sport Clube, 29865, 0, 2, 52.23, 1
+FC Famalicão, 5300, 0, 0, 51.23, 2
+Boavista Futebol Clube, 28263, 0, 9, 31.35, 2
+Rio Ave Futebol Clube, 9065, 0, 0, 25.65, 2
+Portimonense Sporting Clube, 6000, 0, 0, 19.50, 0
+Club Sport Marítimo, 10600, 0, 0, 17.80, 4
+Clube Desportivo Santa Clara, 15000, 0, 0, 17.65, 0
+FC Paços de Ferreira, 9200, 0, 0, 17.30, 1
+Moreirense Futebol Clube, 6153, 0, 1, 15.58, 1
+Belenenses SAD, 41000, 0, 0, 13.60, 1
+SC Farense, 15000, 0, 0, 13.48, 2
+CD Nacional, 5586, 0, 0, 13.38, 5
+Gil Vicente Futebol Clube, 12504, 0, 0, 10.85, 0
+Clube Desportivo Tondela, 5000, 0, 0, 9.30, 2
+AFC Ajax, 54990, 8, 62, 342.55, 13
+PSV Eindhoven, 35000, 2, 44, 172.85, 9
+AZ Alkmaar, 17023, 0, 7, 117.45, 11
+Feyenoord, 47500, 3, 32, 118.18, 5
+FC Utrecht, 23750, 0, 5, 40.63, 0
+SC Heerenveen, 27224, 0, 1, 30.05, 4
+SBV Vitesse, 21248, 0, 1, 26.18, 5
+Willem II Tilburg, 14700, 0, 5, 24.63, 4
+FC Groningen, 22550, 0, 1, 22.98, 4
+FC Twente, 30205, 0, 6, 21.10, 3
+ADO Den Haag, 15000, 0, 4, 16.70, 1
+PEC Zwolle, 14000, 0, 2, 16.33, 2
+Fortuna Sittard, 12500, 0, 2, 15.25, 5
+Sparta Rotterdam, 11026, 0, 9, 14.75, 4
+FC Emmen, 8309, 0, 0, 13.25, 3
+Heracles Almelo, 12400, 0, 2, 13.00, 3
+VVV-Venlo, 8000, 0, 1, 11.25, 2
+RKC Waalwijk, 7508, 0, 0, 9.88, 3
+FC Barcelona, 99354, 13, 69, 808.50, 15
+Real Madrid CF, 81044, 25, 64, 782.00, 15
+Atlético de Madrid, 68456, 6, 22, 770.20, 16
+Real Sociedad, 39500, 0, 5, 348.90, 3
+Sevilla FC, 43883, 7, 7, 346.90, 10
+FC Villarreal, 23500, 0, 0, 252.30, 5
+Valencia CF, 48600, 3, 15, 233.20, 8
+Athletic Bilbao, 53289, 0, 35, 215.10, 2
+Real Bétis, 59378, 0, 3, 202.10, 9
+Getafe CF, 16800, 0, 0, 187, 7
+Celta de Vigo, 29000, 0, 0, 123.20, 5
+Granada CF, 19336, 0, 0, 110.10, 6
+Levante UD, 25354, 0, 0, 105, 4
+CA Osasuna, 18762, 0, 0, 80.50, 1
+Deportivo Alavés, 19840, 0, 0, 71.50, 1
+SD Eibar, 8164, 0, 0, 71, 2
+Real Valladolid CF, 27618, 0, 0, 62.20, 3
+SD Huesca, 7800, 0, 0, 47.30, 1
+Cádiz CF, 21094, 0, 0, 39, 3
+Elche CF, 33732, 0, 0, 37.30, 3
+FC Liverpool, 54074, 14, 49, 1110, 20
+Manchester City FC, 55017, 0, 25, 1060, 17
+Chelsea FC, 40853, 4, 23, 823.05, 19
+Manchester United FC, 74879, 6, 58, 765.35, 15
+Tottenham Hotspur, 62062, 2, 21, 737.15, 17
+FC Arsenal, 60704, 0, 45, 560.70, 12
+FC Everton, 39571, 0, 23, 507.30, 16
+Leicester City FC, 32273, 0, 5, 480.50, 10
+Wolverhampton Wanderers, 32050, 0, 13, 422.60, 14
+Aston Villa FC, 42682, 2, 20, 323.50, 9
+Newcastle United, 52338, 0, 11, 268.05, 8
+West Ham United, 60000, 0, 4, 262.85, 10
+Brighton Albion, 30666, 0, 1, 250.25, 9
+FC Southampton, 32384, 0, 1, 240.50, 7
+FC Fulham, 19000, 0, 0, 216.30, 13
+Crystal Palace FC, 26047, 0, 0, 207.98, 10
+Leeds United FC, 37890, 0, 7, 195.53, 9
+Sheffield United, 32702, 0, 5, 172.30, 7
+FC Burnley, 21994, 0, 5, 152.08, 7
+West Bromwich Albion, 26850, 0, 9, 118.15, 5
+FC Paris Saint-Germain, 49691, 0, 41, 870, 15
+Olympique Lyonnais, 59186, 0, 20, 323.25, 13
+AS Monaco, 18523, 0, 16, 308.50, 6
+LOSC Lille, 50186, 0, 10, 280.80, 11
+Stade Rennais FC, 29778, 0, 3, 253.70, 6
+Olympique de Marseille, 67394, 1, 24, 229.65, 6
+OGC Nice, 36178, 0, 7, 209.35, 3
+RC Strasbourg, 29000, 0, 7, 107.70, 6
+Montpellier HSC, 32939, 0, 3, 102.85, 5
+FC Nantes, 37463, 0, 13, 100.90, 5
+Stade de Reims, 21684, 0, 8, 95.65, 10
+Girondins de Bordeaux, 42052, 0, 15, 91.55, 8
+AS Saint-Étienne, 42000, 0, 17, 89.05, 6
+Stade Brestois 29, 15097, 0, 0, 84.23, 2
+SCO Angers, 16381, 0, 0, 80.20, 5
+RC Lens, 38223, 0, 2, 77.55, 7
+FC Metz, 26700, 0, 3, 76.45, 10
+Dijon SCO, 16098, 0, 0, 69.78, 7
+FC Lorient, 19010, 0, 1, 62.83, 4
+Nîmes Olympique, 18364, 0, 0, 59.95, 7
+FC Bayern München, 75024, 10, 56, 891.40, 13
+Borussia Dortmund, 81365, 1, 18, 615.20, 14
+RB Leipzig, 42146, 0, 0, 552.48, 15
+Bayer 04 Leverkusen, 30210, 1, 1, 347.45, 12
+Borussia Mönchengladbach, 54022, 2, 8, 343.13, 11
+Hertha BSC, 74649, 0, 4, 252.18, 10
+TSG 1899 Hoffenheim, 30150, 0, 0, 236.33, 17
+VfL Wolfsburg, 30000, 0, 3, 216.55, 10
+Eintracht Frankfurt, 51500, 1, 6, 198.05, 11
+Schalke 04, 62271, 1, 14, 157.80, 10
+SC Friburg, 24000, 0, 0, 109.90, 6
+Werder Bremen, 42100, 0, 15, 107.40, 6
+FC Ausburg, 30660, 0, 0, 104.88, 8
+VfB Stuttgart, 60449, 0, 9, 103.45, 3
+FC Köln, 50000, 0, 7, 99.60, 5
+1.FSV Mainz 05, 34000, 0, 0, 95.55, 6
+1.FC Union Berlin, 22012, 0, 0, 62.90, 3
+Arminia Bielefeld, 26515, 0, 0, 45.15, 4
+Zenit St. Peterburg, 68134, 2, 18, 170.80, 10
+CSKA Moskva, 30457, 1, 32, 139.73, 10
+Spartak Moskva, 45360, 0, 36, 120.45, 7
+FK Krasnodar, 35179, 0, 0, 114.15, 10
+Lokomotiv Moskva, 27320, 0, 16, 85.55, 8
+Dinamo Moskva, 25716, 0, 18, 57.40, 9
+Rubin Kazan, 45379, 0, 5, 51.60, 6
+FK Rostov, 45145, 0, 1, 46.25, 6
+FK Sochi, 43700, 0, 0, 31.70, 4
+Akhmat Grozny, 30200, 0, 1, 30.38, 6
+Arsenal Tula, 19241, 0, 0, 30.15, 6
+Ural Ekaterimburg, 27000, 0, 0, 25.03, 2
+Rotor Volgograd, 45568, 0, 0, 20.30, 6
+FK Khimki, 18636, 0, 0, 18.60, 3
+FK Ufa, 15132, 0, 0, 15.70, 1
+PFK Tambov, 44149, 0, 0, 10.20, 3
+Celtic FC, 60832, 1, 110, 100.48, 14
+Rangers FC, 50987, 0, 114, 80.13, 13
+Hibernian FC, 20250, 0, 10, 16.53, 7
+Aberdeen FC, 22199, 1, 17, 14.23, 6
+Dundee United FC, 14223, 0, 6, 11.98, 1
+Motherwell FC, 13750, 0, 4, 11.03, 3
+Livingston FC, 9512, 0, 2, 9.90, 2
+Ross County FC, 6541, 0, 4, 8.80, 0
+St. Johnstone FC, 10696, 0, 2, 7.80, 1
+St. Mirren FC, 8023, 0, 5, 7.78, 0
+Hamilton Academical FC, 6018, 0, 2, 7.68, 1
+Kilmarnock FC, 18128, 0, 5, 7.60, 0
