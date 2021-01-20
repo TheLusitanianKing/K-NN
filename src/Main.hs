@@ -1,15 +1,16 @@
+{-# LANGUAGE OverloadedStrings #-}
+
 module Main where
 
-import Classifier
+import qualified Data.Text as T
+import qualified Data.Text.IO as T.IO
+import KNN
 
 main :: IO ()
 main = do
-    cl <- parseCSVFile "data/europeanFootball.csv"
-    case cl of
-        Nothing -> putStrLn "Could not create a classifier from the CSV file..."
-        Just c  -> do
-            let scaledClassifier = scaling c
-            -- TODO: maybe we should scaling when actually classifying so we don't lose any data
-            -- It would also mean, we don't have to keep the min/max value
-            print scaledClassifier
-            -- print $ nearestNeighbours 5 () c
+    classifiedCSV   <- T.IO.readFile "data/europeanFootball/classified.csv"
+    unclassifiedCSV <- T.IO.readFile "data/europeanFootball/unclassified-pie.csv"
+    let appendedFiles = classifiedCSV `T.append` "\n" `T.append` unclassifiedCSV
+    let classifier = parseCSVFile appendedFiles "Playing in Europe"
+    let scaledClassifier = scaling classifier
+    print scaledClassifier
