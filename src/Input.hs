@@ -37,7 +37,7 @@ instance Show Input where
            ++ concatMap
                 (\o ->
                     indent 4 ++ T.unpack (name o) ++ " -> " ++ maybe "X" show (object o) ++ "\n"
-                    ++ indent 8 ++ (T.unpack . T.intercalate ", " . fromJust $ neighbours o) ++ "\n"
+                    -- ++ indent 8 ++ (T.unpack . T.intercalate ", " . fromJust $ neighbours o) ++ "\n"
                 )
                 (unreliableObjects i)
 

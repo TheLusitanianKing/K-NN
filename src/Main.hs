@@ -6,7 +6,7 @@ import Data.Maybe (fromMaybe)
 import Data.Text (Text)
 import qualified Data.Text as T
 import qualified Data.Text.IO as T.IO
-import Evaluation (evaluating)
+import Evaluation (evaluatingC, rsquare)
 import KNN (scaling)
 import Parsing (parseCSVFile, parseEvaluatingCSVFile)
 import Prediction (classification, predictInput, regression)
@@ -22,32 +22,34 @@ main = do
     -- retrieve CSV files
     learningCSV            <- T.IO.readFile "data/football/learning.csv"
     classificationInputCSV <- T.IO.readFile "data/football/classification/input.csv"
-    regressionInputCSV     <- T.IO.readFile "data/football/regression/input.csv"
+    regressionInputCSV     <- T.IO.readFile "data/football/regression/input-stadium.csv"
+    regressionInputCSV'     <- T.IO.readFile "data/football/regression/input-european.csv"
     -- k-nn classification
-    knnClassification k $ learningCSV `T.append` "\n" `T.append` classificationInputCSV
+    knnClassification k 5 $ learningCSV `T.append` "\n" `T.append` classificationInputCSV
     -- k-nn regression
-    knnRegression k  $ learningCSV `T.append` "\n" `T.append` regressionInputCSV
+    knnRegression k 0 $ learningCSV `T.append` "\n" `T.append` regressionInputCSV
+    knnRegression k 1 $ learningCSV `T.append` "\n" `T.append` regressionInputCSV'
 
-knnClassification :: Int -> Text -> IO ()
-knnClassification k s = do
-    let index = 5
+knnClassification :: Int -> Int -> Text -> IO ()
+knnClassification k index s = do
     -- parsing scaling and then predicting
     let scaled = scaling $ parseCSVFile s index
     let predicted = predictInput k classification scaled
-    -- evaluating
+    -- preparing evaluation data
     evaluationCSV <- T.IO.readFile "data/football/evaluation.csv"
     let evaluationData = parseEvaluatingCSVFile evaluationCSV index
     -- printing feedback
     putStrLn $ "Classification results: \n" ++ show predicted
-    putStrLn . ("Evaluation (from 0 to 1): " ++) . show $ evaluating predicted evaluationData
+    putStrLn $ "Evaluation (from 0 to 1): " ++ show (evaluatingC predicted evaluationData)
 
-knnRegression :: Int -> Text -> IO ()
-knnRegression k s = do
-    let index = 0
+knnRegression :: Int -> Int -> Text -> IO ()
+knnRegression k index s = do
     -- parsing scaling and then predicting
     let scaled = scaling $ parseCSVFile s index
     let predicted = predictInput k regression scaled
-    -- evaluating
-    -- ... (TODO)
+    -- preparing evaluation data
+    evaluationCSV <- T.IO.readFile "data/football/evaluation.csv"
+    let evaluationData = parseEvaluatingCSVFile evaluationCSV index
     -- printing feedback
-    putStrLn $ "Regression results:" ++ show predicted
+    putStrLn $ "Regression results: \n" ++ show predicted
+    putStrLn $ "R-Square (between 0 and 1): " ++ show (rsquare predicted evaluationData)
