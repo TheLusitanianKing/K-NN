@@ -47,10 +47,24 @@ Football is a pretty unpredictable sport so I think the results are pretty good,
 ### Scenario
 For the regression I used the same data, except this time, the idea is about **predicting the stadium capacity** (and **the number of major European trophies won**) of a Italian club from the Serie A knowing the club characterics (based on the same as above + if they are playing in Europe or not).
 
-### Evaluating
-I used the [R Squared](https://en.wikipedia.org/wiki/Coefficient_of_determination) to mesure the quality of the k-nn regression.
+### Example
+Based on the club characteristics, and with **k=9**, here are some predictions for the stadium capacity:
+| Club                     | Prediction | Actual value  |
+|--------------------------|------------|---------------|
+| FC Internazionale Milano | 61 686     | 80 018        |
+| SSC Napoli               | 50 995     | 54 726        |
+| ACF Fiorentina           | 47 120     | 47 282        |
+| FC Crotone               | 16 189     | 16 547        |
 
-#### Results with predicting stadium capacity
+As you can see, some values are pretty far off and some are actually pretty accurate.
+
+### Evaluating
+I used the [R Squared](https://en.wikipedia.org/wiki/Coefficient_of_determination) to mesure the quality of the k-nn regression. Its value is between -∞ and 1:
+- A R Squared of 1 being the best where the predicted values exactly match the actual values,
+- A R Squared of 0 being a model that always predicts the mean value,
+- And a negative R Squared have worse predictions than the R Squared of 0.
+
+#### Results for predicting stadium capacity
 | k  | R Squared |
 |----|-----------|
 | 3  | 0.29      |
@@ -61,7 +75,7 @@ I used the [R Squared](https://en.wikipedia.org/wiki/Coefficient_of_determinatio
 | 13 | 0.41      |
 | 15 | 0.38      |
 
-#### Results with predicting major European trophies won
+#### Results for predicting major European trophies won
 | k  | R Squared |
 |----|-----------|
 | 3  | 0.31      |
@@ -72,8 +86,7 @@ I used the [R Squared](https://en.wikipedia.org/wiki/Coefficient_of_determinatio
 | 13 | 0.63      |
 | 15 | 0.58      |
 
-#### Analysis
-Results are actually not very good as both the *stadium capacity* and the *number of major European trophies won* are very hard to predict from the data we have.
+Both the *stadium capacity* and the *number of major European trophies won* are very hard to predict from the data we have, so the results are far from perfect but it is a nice illustration of what we can do with k-nn regression.
 
 ## License
 See [License](LICENSE)
