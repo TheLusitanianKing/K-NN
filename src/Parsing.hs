@@ -1,12 +1,34 @@
 {-# LANGUAGE OverloadedStrings #-}
 
+-- |
+-- Module      : Parsing
+-- Description : Handle parsing data
+-- License     : MIT
+-- Maintainer  : The Lusitanian King <alexlusitanian@gmail.com>
 module Parsing where
 
-import Classifier
-import Data.List (findIndex)
+import Input
 import Data.Text (Text)
 import qualified Data.Text as T
 
+-- | Parsing a CSV file
+parseCSVFile :: Text       -- ^ content of the CSV file
+             -> Int        -- ^ index of the class/variable to predict
+             -> Input      -- ^ parsed input
+parseCSVFile content i = parse . map (map T.strip . T.splitOn ",") . T.lines $ content
+    where parse :: [[Text]] -> Input
+          parse ((_:columns):weighs:objects) =
+              if i >= length columns
+              then error "Could not find the class/variable to predict in the CSV."
+              else
+                  Input {
+                      -- to make it easier, we suppose the class will always have a - indicating a missing value
+                      weighs  = map (read . T.unpack) (filter (/="-") weighs),
+                      objects = map (parseObject i) objects
+                  }
+          parse _ = error "Missing data in the parsed CSV."
+
+-- | Parsing a single object
 parseObject :: Int    -- the index where the class is
             -> [Text] -- the list of variables
             -> Object -- the constructed object
@@ -21,22 +43,6 @@ parseObject i (name:values) =
         neighbours = Nothing
     }
 parseObject _ _ = error "Malformed entity value..."
-
--- | Parsing a CSV file
-parseCSVFile :: Text       -- ^ content of the CSV file
-             -> Text       -- ^ name of the class/variable to predict
-             -> Classifier -- ^ completed classifier
-parseCSVFile content target = parse . map (map T.strip . T.splitOn ",") . T.lines $ content
-    where parse :: [[Text]] -> Classifier
-          parse ((_:columns):weighs:objects) =
-              case (==target) `findIndex` columns of
-                  Nothing -> error "Could not find the class/variable to predict in the CSV."
-                  Just i  -> Classifier {
-                      -- to make it easier, we suppose the class will always have a - indicating a missing value
-                      weighs  = map (read . T.unpack) (filter (/="-") weighs),
-                      objects = map (parseObject i) objects
-                  }
-          parse _ = error "Missing data in the parsed CSV."
 
 -- | Parsing an evaluating set
 parseEvaluatingCSVFile :: Text -> Int -> [Object]

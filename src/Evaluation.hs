@@ -1,17 +1,22 @@
 {-# LANGUAGE OverloadedStrings #-}
 
--- | Evaluation related operations
+-- |
+-- Module      : Evaluation
+-- Description : Evaluating predictions
+-- License     : MIT
+-- Maintainer  : The Lusitanian King <alexlusitanian@gmail.com>
 module Evaluation where
 
-import Classifier
+import Input
 import Data.List (sortBy)
 
--- | Evaluating a classifier with an evaluation set
-evaluating :: Classifier -- ^ classifier with everything predicted
+-- | Evaluating a classified input with an evaluation set
+evaluating :: Input      -- ^ input with everything predicted
            -> [Object]   -- ^ list of objects from the evaluation set
            -> Double     -- ^ score (from 0 to 1)
-evaluating c = evaluating' (unreliableObjects c)
+evaluating = evaluating' . unreliableObjects
 
+-- | Evaluating a list of objects
 evaluating' :: [Object] -- ^ set of classified objects
             -> [Object] -- ^ set of evaluation objects
             -> Double   -- ^ score (from 0 to 1)

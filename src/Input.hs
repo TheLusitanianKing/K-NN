@@ -1,6 +1,11 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Classifier where
+-- |
+-- Module      : Input
+-- Description : Handle input data and some helper functions
+-- License     : MIT
+-- Maintainer  : The Lusitanian King <alexlusitanian@gmail.com>
+module Input where
 
 import Data.Maybe (fromJust, isJust, isNothing)
 import Data.Text (Text)
@@ -18,31 +23,31 @@ data Object = Object {
     neighbours :: Maybe [Text] -- ^ its neighbours' names for illustration purposes
 } deriving (Show)
 
--- | Algebraic data type representing the classifier (based on the input file)
-data Classifier = Classifier {
-    weighs  :: [Value],
-    objects :: [Object]
+-- | Algebraic data type representing the input data
+data Input = Input {
+    weighs  :: [Value], -- ^ the weigh for each of the variables
+    objects :: [Object] -- ^ the list of objects/data
 }
 
--- | Custom print for the classifier
-instance Show Classifier where
-    show c = "Weighs: " ++ show (weighs c) ++ "\n"
-           ++ "Reliable data: " ++ (show . length . reliableObjects $ c) ++ "\n"
+-- | Custom print for the input
+instance Show Input where
+    show i = "Weighs: " ++ show (weighs i) ++ "\n"
+           ++ "Reliable data: " ++ (show . length . reliableObjects $ i) ++ "\n"
            ++ "Classified data: " ++ "\n"
            ++ concatMap
                 (\o ->
                     indent 4 ++ T.unpack (name o) ++ " -> " ++ maybe "X" show (object o) ++ "\n"
                     ++ indent 8 ++ (T.unpack . T.intercalate ", " . fromJust $ neighbours o) ++ "\n"
                 )
-                (unreliableObjects c)
+                (unreliableObjects i)
 
 -- | Helper function to give an simple blank space for indentation purpose
 indent :: Int -> String
 indent x = concat (replicate x " ")
 
--- | Retrieving classified and unclassified objects of the classifier
--- And reliable/unreliable objects (those objects are classified but determine or not by the k-NN)
-classified, unclassified, reliableObjects, unreliableObjects :: Classifier -> [Object]
+-- | Retrieving classified and unclassified objects of the input
+-- And reliable/unreliable objects (whether or not it was classified by k-NN)
+classified, unclassified, reliableObjects, unreliableObjects :: Input -> [Object]
 classified = filter (isJust . object) . objects
 unclassified = filter (isNothing . object) . objects
 reliableObjects = filter reliable . classified

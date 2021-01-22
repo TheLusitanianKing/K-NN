@@ -1,24 +1,27 @@
 {-# LANGUAGE OverloadedStrings #-}
 
--- | K-NN algorithm
+-- |
+-- Module      : KNN
+-- Description : k-nn algorithm + scaling, distances and so on.
+-- License     : MIT
+-- Maintainer  : The Lusitanian King <alexlusitanian@gmail.com>
 module KNN where
 
-import Classifier
-import Data.List (group, minimumBy, transpose, sort, sortBy)
-import Data.Maybe (fromJust, isJust)
+import Input (Input(..), Object(..), reliableObjects)
+import Data.List (sortBy, transpose)
+import Data.Maybe (fromJust)
 import Data.Text (Text)
--- import qualified Data.Text as T
 
 -- | Scaling all values between 0 and 1
-scaling :: Classifier -- ^ classifier to be scaled
-        -> Classifier -- ^ scaled classifier
-scaling c = c { objects = scaledObjects }
+scaling :: Input -- ^ input to be scaled
+        -> Input -- ^ scaled input
+scaling i = i { objects = scaledObjects }
     where scaledObjects :: [Object]
           scaledObjects =
-              map (\o -> o { variables = zipWith minmaxScaling minmax (variables o)})
-                $ objects c
+              map (\o -> o { variables = zipWith minmaxScaling minmax (variables o) })
+                $ objects i
           -- minmax being for each column of variables the tuple (minimum value, maximum value)
-          minmax = map (\vs -> (minimum vs, maximum vs)) . transpose . map variables $ objects c
+          minmax = map (\vs -> (minimum vs, maximum vs)) . transpose . map variables $ objects i
 
 -- | Rescaling a value (min-max normalization)
 minmaxScaling :: Fractional a => (a, a) -> a -> a
@@ -36,37 +39,11 @@ euclideanDistance ws o1 o2 = sqrt . sum $ weightedDists
 -- | List the nearest neighbours
 nearestNeighbours :: Int                      -- ^ how many neighbours (the k in k-NN)
                   -> Object                   -- ^ the object for which we want to find the k-NN
-                  -> Classifier               -- ^ the scaled classifier to be used
+                  -> Input                    -- ^ the scaled input to be used
                   -> [(Text, Double, Double)] -- ^ the k nearest neighbours sorted by distance ASC
-nearestNeighbours k e c = map (\(n, o, d) -> (n, fromJust . object $ o, d))
+nearestNeighbours k e i = map (\(n, o, d) -> (n, fromJust . object $ o, d))
                         -- (name of the neighbour, class, euclidean distance)
                         . take k
                         . sortBy (\(_, _, d) (_, _, d') -> compare d d') -- sort by distance
-                        . map (\x -> (name x, x, euclideanDistance (weighs c) e x)) -- euclidean distance with all entities
-                        $ reliableObjects c
-
--- | Predict class for a non-classified object of a classifier
-predictClass :: Int        -- ^ how many neighbours
-             -> Object     -- ^ a non-classified object
-             -> Classifier -- ^ the scaled classifier to be used
-             -> Object     -- ^ the now classified object
-predictClass k o c = o { object = Just predicted, neighbours = Just neighboursNames }
-    where predicted = fst
-                    . minimumBy (\(_, l) (_, l') -> compare l' l)
-                    . map (\x -> (head x, length x))
-                    . group
-                    . sort
-                    . map (\(_, c, _) -> c)
-                    $ neighbours
-          neighbours = nearestNeighbours k o c
-          neighboursNames = map (\(n, _, _) -> n) neighbours
-
--- | Predict class for a complete classifier
-predictClassifier :: Int        -- ^ how many neighbours
-                  -> Classifier -- ^ scaled classifier with non-classified objects
-                  -> Classifier -- ^ classifier with all its objects classified
-predictClassifier k c = c { objects = objects' }
-    where objects' = map classify (objects c)
-          classify o
-            | isJust . object $ o = o
-            | otherwise = predictClass k o c
+                        . map (\x -> (name x, x, euclideanDistance (weighs i) e x)) -- euclidean distance with all entities
+                        $ reliableObjects i
