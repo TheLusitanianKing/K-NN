@@ -44,10 +44,36 @@ It is also good to know that each variable has a **weigh**, for example, I decid
 Football is a pretty unpredictable sport so I think the results are pretty good, although it is also possible to play with the weighs of each variable to try to make it more accurate.
 
 ## Regression
-For the regression I used the same data, except this time, the idea is about **predicting the stadium capacity** of a Italian club from the Serie A knowing the club characterics (based on the same as above + if they are playing in Europe or not).
+### Scenario
+For the regression I used the same data, except this time, the idea is about **predicting the stadium capacity** (and **the number of major European trophies won**) of a Italian club from the Serie A knowing the club characterics (based on the same as above + if they are playing in Europe or not).
 
 ### Evaluating
-TO DO
+I used the [R Squared](https://en.wikipedia.org/wiki/Coefficient_of_determination) to mesure the quality of the k-nn regression.
+
+#### Results with predicting stadium capacity
+| k  | R Squared |
+|----|-----------|
+| 3  | 0.29      |
+| 5  | 0.39      |
+| 7  | 0.36      |
+| 9  | 0.43      |
+| 11 | 0.42      |
+| 13 | 0.41      |
+| 15 | 0.38      |
+
+#### Results with predicting major European trophies won
+| k  | R Squared |
+|----|-----------|
+| 3  | 0.31      |
+| 5  | 0.34      |
+| 7  | 0.39      |
+| 9  | 0.49      |
+| 11 | 0.44      |
+| 13 | 0.63      |
+| 15 | 0.58      |
+
+#### Analysis
+Results are actually not very good as both the *stadium capacity* and the *number of major European trophies won* are very hard to predict from the data we have.
 
 ## License
 See [License](LICENSE)
