@@ -1,11 +1,11 @@
-# k-NN
+# k-nearest neighbours
 Simple k-nearest neighbours algorithm for demonstration purposes.
 
 ## What is this algorithm about?
 ### Purpose
-The k-NN algorithm is mainly used for 2 purposes:
-- **k-NN classification**: determine the class of an object by identifying its K nearest neighbours and assigning the most common class among them.
-- **k-NN regression**: determine a feature of an object by identifying its K nearest neighbours and assigning the average value of the feature for those neighbours.
+The k-nn algorithm is mainly used for 2 purposes:
+- **k-nn classification**: determine the class of an object by identifying its **k** nearest neighbours and assigning the most common class among them.
+- **k-nn regression**: determine a feature of an object by identifying its **k** nearest neighbours and assigning the average value of the feature for those neighbours.
 
 ### How are distances calculated?
 Commonly used when using continuous variables is the [Euclidean distance](https://en.wikipedia.org/wiki/Euclidean_distance). In my case, I first scaled all the features between `[0, 1]` then used the *weighted* Euclidean distance.
@@ -44,7 +44,10 @@ It is also good to know that each variable has a **weigh**, for example, I decid
 Football is a pretty unpredictable sport so I think the results are pretty good, although it is also possible to play with the weighs of each variable to try to make it more accurate.
 
 ## Regression
-Work in progress...
+For the regression I used the same data, except this time, the idea is about **predicting the stadium capacity** of a Italian club from the Serie A knowing the club characterics (based on the same as above + if they are playing in Europe or not).
+
+### Evaluating
+TO DO
 
 ## License
 See [License](LICENSE)
