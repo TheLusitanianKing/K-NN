@@ -2,22 +2,13 @@
 
 -- |
 -- Module      : Evaluation
--- Description : Evaluating predictions
+-- Description : Evaluating predictions for k-nn regression
 -- License     : MIT
 -- Maintainer  : The Lusitanian King <alexlusitanian@gmail.com>
-module Evaluation where
+module Evaluation.Regression where
 
 import Data.Maybe (fromJust)
 import Input (Input(..), Object(..), Value, unreliableObjects)
-
--- | Evaluating a classified input with an evaluation set
-evaluatingC :: Input      -- ^ input with everything predicted
-            -> [Object]   -- ^ list of objects from the evaluation set
-            -> Value      -- ^ score (from 0 to 1)
-evaluatingC = evaluating . unreliableObjects
-    where evaluating os1 os2 = sum scores / total
-            where total  = fromIntegral $ length scores
-                  scores = zipWith (\o1 o2 -> if object o1 == object o2 then 1 else 0) os1 os2
 
 -- | SAE (sum of absolute errors)
 sae :: Input    -- ^ input with everything predicted

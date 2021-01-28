@@ -31,14 +31,10 @@ data Input = Input {
 
 -- | Custom print for the input
 instance Show Input where
-    show i = "Weighs: " ++ show (weighs i) ++ "\n"
-           ++ "Reliable data: " ++ (show . length . reliableObjects $ i) ++ "\n"
-           ++ "Classified data: " ++ "\n"
+    show i = "Classified data: "
+           ++ "\n"
            ++ concatMap
-                (\o ->
-                    indent 4 ++ T.unpack (name o) ++ " -> " ++ maybe "X" show (object o) ++ "\n"
-                    -- ++ indent 8 ++ (T.unpack . T.intercalate ", " . fromJust $ neighbours o) ++ "\n"
-                )
+                (\o -> indent 4 ++ T.unpack (name o) ++ " -> " ++ maybe "X" show (object o) ++ "\n")
                 (unreliableObjects i)
 
 -- | Helper function to give an simple blank space for indentation purpose

@@ -89,4 +89,4 @@ I used the [R Squared](https://en.wikipedia.org/wiki/Coefficient_of_determinatio
 Both the *stadium capacity* and the *number of major European trophies won* are very hard to predict from the data we have, so the results are far from perfect but it is a nice illustration of what we can do with k-nn regression.
 
 ## License
-See [License](LICENSE)
+See [LICENSE](LICENSE) file.
