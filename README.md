@@ -1,4 +1,4 @@
-# k-nearest neighbours
+# k-nearest neighbours ![Haskell CI](https://github.com/TheLusitanianKing/K-NN/workflows/Haskell%20CI/badge.svg)
 Simple k-nearest neighbours algorithm for demonstration purposes.
 
 ## What is this algorithm about?
