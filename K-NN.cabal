@@ -11,15 +11,44 @@ category:            Machine Learning
 build-type:          Simple
 extra-source-files:  CHANGELOG.md, README.md
 
-executable K-NN
-  main-is:             Main.hs
-  other-modules:       Evaluation.Classification,
-                       Evaluation.Regression,
-                       Input,
-                       KNN,
-                       Parsing,
-                       Prediction
-  build-depends:       base >= 4.13 && < 4.14,
-                       text >= 1.2.4
-  hs-source-dirs:      src
-  default-language:    Haskell2010
+executable k-nn
+  main-is: Main.hs
+  build-depends:
+    base >= 4.13 && < 4.14,
+    text >= 1.2.4,
+    k-nn-lib
+  ghc-options: -Wall
+  default-language: Haskell2010
+
+library k-nn-lib
+  exposed-modules:
+    Evaluation.Classification,
+    Evaluation.Regression,
+    Input,
+    KNN,
+    Parsing,
+    Prediction
+  hs-source-dirs:
+    src
+  ghc-options: -Wall
+  build-depends:
+    base >= 4.13 && < 4.14,
+    text >= 1.2.4
+  default-language: Haskell2010
+
+test-suite test
+  type: exitcode-stdio-1.0
+  main-is: Tests.hs
+  hs-source-dirs:
+    tests, tests/TestCases
+  other-modules:
+    TestClassificationEvaluation,
+    TestParsing,
+    TestRegressionEvaluation
+  build-depends:
+    base >= 4.13 && < 4.14,
+    QuickCheck >= 2.14.2,
+    hspec >= 2.7.4,
+    text >= 1.2.4,
+    k-nn-lib
+  default-language: Haskell2010

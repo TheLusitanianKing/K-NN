@@ -7,7 +7,7 @@
 -- Maintainer  : The Lusitanian King <alexlusitanian@gmail.com>
 module Input where
 
-import Data.Maybe (fromJust, isJust, isNothing)
+import Data.Maybe (isJust, isNothing)
 import Data.Text (Text)
 import qualified Data.Text as T
 
@@ -21,13 +21,13 @@ data Object = Object {
     object     :: Maybe Value, -- ^ its class/variable to predict (if exists, already classified)
     reliable   :: Bool,        -- ^ if its class/variable is 100% reliable or if it has been predicted by k-NN
     neighbours :: Maybe [Text] -- ^ its neighbours' names for illustration purposes
-} deriving (Show)
+} deriving (Eq, Show)
 
 -- | Algebraic data type representing the input data
 data Input = Input {
     weighs  :: [Value], -- ^ the weigh for each of the variables
     objects :: [Object] -- ^ the list of objects/data
-}
+} deriving (Eq)
 
 -- | Custom print for the input
 instance Show Input where

@@ -17,14 +17,14 @@ parseCSVFile :: Text       -- ^ content of the CSV file
              -> Input      -- ^ parsed input
 parseCSVFile content i = parse . map (map T.strip . T.splitOn ",") . T.lines $ content
     where parse :: [[Text]] -> Input
-          parse ((_:columns):weighs:objects) =
+          parse ((_:columns):ws:os) =
               if i >= length columns
               then error "Could not find the class/variable to predict in the CSV."
               else
                   Input {
                       -- to make it easier, we suppose the class will always have a - indicating a missing value
-                      weighs  = map (read . T.unpack) (filter (/="-") weighs),
-                      objects = map (parseObject i) objects
+                      weighs  = map (read . T.unpack) (filter (/="-") ws),
+                      objects = map (parseObject i) os
                   }
           parse _ = error "Missing data in the parsed CSV."
 
