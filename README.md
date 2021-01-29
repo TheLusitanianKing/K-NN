@@ -23,13 +23,13 @@ I used data from major European football clubs that I mainly collected from [Tra
 - An estimated market value by [Transfermarkt](https://www.transfermarkt.pt) *(as of January 18th, 2021)*,
 - And a number of international players.
 
-The idea is, just by looking at those variables: **predict whether a club is playing in Europe or not this season** (it doesn't matter if it is the Champions League or the Europa League).
+The idea is, just by looking at those features: **predict whether a club is playing in Europe or not this season** (it doesn't matter if it is the Champions League or the Europa League).
 
 The learning data will consist of the clubs from: Portugal (Liga Nos), France (Ligue 1), the Netherlands (Eredivisie), England (Premier League), Scotland (Scottish Premiership), Russia (Premier Liga), Germany (Bundesliga) and Spain (La Liga).
 
 For all the Italian clubs from the Serie A, we want to try to predict whether or not they are playing in Europe this season (2020-2021).
 
-It is also good to know that each variable has a **weigh**, for example, I decided that the *stadium capacity* or the *number of international players* of the club isn't as important to determine to probability of the club playing in Europe than its *past European success* and its *estimated market value*. You can change the weighs easily by modifying the input CSV.
+It is also good to know that each features has a **weigh**, for example, I decided that the *stadium capacity* or the *number of international players* of the club isn't as important to determine to probability of the club playing in Europe than its *past European success* and its *estimated market value*. You can change the weighs easily by modifying the input CSV.
 
 ### Evaluating
 #### Results
@@ -41,7 +41,7 @@ It is also good to know that each variable has a **weigh**, for example, I decid
 | 9  | 85%              |
 | 11 | 90%              |
 
-Football is a pretty unpredictable sport so I think the results are pretty good, although it is also possible to play with the weighs of each variable to try to make it more accurate.
+Football is a pretty unpredictable sport so I think the results are pretty good, although it is also possible to play with the weighs of each feature to try to make it more accurate.
 
 ## Regression
 ### Scenario

@@ -16,4 +16,4 @@ score :: Input      -- ^ input with everything predicted
 score = evaluating . unreliableObjects
     where evaluating os1 os2 = sum scores / total
             where total  = fromIntegral $ length scores
-                  scores = zipWith (\o1 o2 -> if object o1 == object o2 then 1 else 0) os1 os2
+                  scores = zipWith (\o1 o2 -> if label o1 == label o2 then 1 else 0) os1 os2

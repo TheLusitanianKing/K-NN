@@ -34,7 +34,7 @@ predict :: Int        -- ^ how many neighbours
         -> Object     -- ^ the now classified object
 predict k p o i
     | reliable o = error "Should not classify a reliable object."
-    | otherwise = o { object = Just predicted, neighbours = Just neighboursNames }
+    | otherwise = o { label = Just predicted, neighbours = Just neighboursNames }
     where predicted = p . map (\(_, c, _) -> c) $ neighbours
           neighbours = nearestNeighbours k o i
           neighboursNames = map (\(n, _, _) -> n) neighbours
@@ -47,5 +47,5 @@ predictInput :: Int        -- ^ how many neighbours
 predictInput k p i = i { objects = objects' }
     where objects' = map classify (objects i)
           classify o
-            | isJust . object $ o = o
+            | isJust . label $ o = o
             | otherwise           = predict k p o i

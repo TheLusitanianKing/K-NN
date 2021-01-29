@@ -14,24 +14,24 @@ input = Input {
     weighs = [1, 2, 3],
     objects = [
         Object {
-            name = "Sport Lisboa e Benfica",
-            variables = [303.1, 353, 934.29],
-            object = Just 1,
-            reliable = True,
+            name       = "Sport Lisboa e Benfica",
+            features   = [303.1, 353, 934.29],
+            label      = Just 1,
+            reliable   = True,
             neighbours = Nothing
         },
         Object {
-            name = "Futebol Clube do Porto",
-            variables = [129.29, 104, 120],
-            object = Just 0,
-            reliable = True,
+            name       = "Futebol Clube do Porto",
+            features   = [129.29, 104, 120],
+            label      = Just 0,
+            reliable   = True,
             neighbours = Nothing
         },
         Object {
-            name = "Sporting Clube de Portugal",
-            variables = [250.1, 120, 100],
-            object = Nothing,
-            reliable = False,
+            name       = "Sporting Clube de Portugal",
+            features   = [250.1, 120, 100],
+            label      = Nothing,
+            reliable   = False,
             neighbours = Nothing
         }]
 }

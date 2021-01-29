@@ -37,8 +37,8 @@ parseObject i (name:values) =
         vs = let (a, _:b) = splitAt i values in a ++ b -- removing class from the variables
     in Object {
         name       = T.strip name,
-        variables  = map (read . T.unpack) vs,
-        object     = if v == "-" then Nothing else return $ (read . T.unpack) v,
+        features  = map (read . T.unpack) vs,
+        label      = if v == "-" then Nothing else return $ (read . T.unpack) v,
         reliable   = v /= "-",
         neighbours = Nothing
     }

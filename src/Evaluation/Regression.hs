@@ -16,7 +16,7 @@ sae :: Input    -- ^ input with everything predicted
     -> Value    -- ^ score
 sae i = sae' (unreliableObjects i)
     where sae' os1 os2 = sum errors
-            where errors = zipWith (\o1 o2 -> abs $ (fromJust . object $ o2) - (fromJust . object $o1)) os1 os2
+            where errors = zipWith (\o1 o2 -> abs $ (fromJust . label $ o2) - (fromJust . label $o1)) os1 os2
 
 -- | SSE (sum of squared errors)
 sse :: Input    -- ^ input with everything predicted
@@ -24,7 +24,7 @@ sse :: Input    -- ^ input with everything predicted
     -> Value    -- ^ score
 sse i = sse' (unreliableObjects i)
     where sse' predictions evaluatingObjs = sum errors
-            where errors = zipWith (\o1 o2 -> ((fromJust . object $ o2) - (fromJust . object $ o1)) ^ 2) predictions evaluatingObjs
+            where errors = zipWith (\o1 o2 -> ((fromJust . label $ o2) - (fromJust . label $ o1)) ^ 2) predictions evaluatingObjs
 
 -- | Calculating R-Square value
 -- Value between 0 and 1, bigger value indicates a better fit between prediction and actual value.
@@ -33,5 +33,5 @@ rsquare :: Input    -- ^ input with everything predicted
         -> Value    -- ^ score (between 0 and 1)
 rsquare i = rsquare' (unreliableObjects i)
     where rsquare' predictions evaluatingObjs = 1 - (sse i evaluatingObjs / sum sumMean)
-            where sumMean = map (\o -> ((fromJust . object $ o) - mean) ^ 2) evaluatingObjs
-                  mean = sum (map (fromJust . object) predictions) / (fromIntegral . length $ predictions)
+            where sumMean = map (\o -> ((fromJust . label $ o) - mean) ^ 2) evaluatingObjs
+                  mean = sum (map (fromJust . label) predictions) / (fromIntegral . length $ predictions)
