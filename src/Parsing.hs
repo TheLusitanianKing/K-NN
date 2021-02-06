@@ -32,12 +32,12 @@ parseCSVFile content i = parse . map (map T.strip . T.splitOn ",") . T.lines $ c
 parseObject :: Int    -- the index where the class is
             -> [Text] -- the list of variables
             -> Object -- the constructed object
-parseObject i (name:values) =
+parseObject i (n:values) =
     let v  = values !! i                               -- retrieving class value
         vs = let (a, _:b) = splitAt i values in a ++ b -- removing class from the variables
     in Object {
-        name       = T.strip name,
-        features  = map (read . T.unpack) vs,
+        name       = T.strip n,
+        features   = map (read . T.unpack) vs,
         label      = if v == "-" then Nothing else return $ (read . T.unpack) v,
         reliable   = v /= "-",
         neighbours = Nothing

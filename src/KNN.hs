@@ -25,7 +25,7 @@ scaling i = i { objects = scaledObjects }
 
 -- | Rescaling a value (min-max normalization)
 minmaxScaling :: Fractional a => (a, a) -> a -> a
-minmaxScaling (min, max) x = (x - min) / (max - min)
+minmaxScaling (mini, maxi) x = (x - mini) / (maxi - mini)
 
 -- | Weighted Euclidean distance between 2 entities
 euclideanDistance :: [Double] -- ^ list of ordered weighs
