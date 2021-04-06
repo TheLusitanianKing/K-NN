@@ -44,7 +44,7 @@ indent x = concat (replicate x " ")
 -- | Retrieving labeled and unlabeled objects of the input
 -- And reliable/unreliable objects (whether or not it was classified by k-NN)
 labeled, unlabeled, reliableObjects, unreliableObjects :: Input -> [Object]
-labeled = filter (isJust . label) . objects
-unlabeled = filter (isNothing . label) . objects
-reliableObjects = filter reliable . labeled
+labeled           = filter (isJust . label) . objects
+unlabeled         = filter (isNothing . label) . objects
+reliableObjects   = filter reliable . labeled
 unreliableObjects = filter (not . reliable) . labeled

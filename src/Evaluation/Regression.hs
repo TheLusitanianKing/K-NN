@@ -34,4 +34,4 @@ rsquare :: Input    -- ^ input with everything predicted
 rsquare i = rsquare' (unreliableObjects i)
     where rsquare' predictions evaluatingObjs = 1 - (sse i evaluatingObjs / sum sumMean)
             where sumMean = map (\o -> ((fromJust . label $ o) - mean) ^ 2) evaluatingObjs
-                  mean = sum (map (fromJust . label) predictions) / (fromIntegral . length $ predictions)
+                  mean    = sum (map (fromJust . label) predictions) / (fromIntegral . length $ predictions)

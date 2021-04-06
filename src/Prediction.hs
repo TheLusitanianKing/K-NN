@@ -1,6 +1,6 @@
 -- |
 -- Module      : KNN
--- Description : k-nn algorithm + scaling, distances and so on.
+-- Description : k-nn predictions
 -- License     : MIT
 -- Maintainer  : The Lusitanian King <alexlusitanian@gmail.com>
 module Prediction where
@@ -34,9 +34,9 @@ predict :: Int        -- ^ how many neighbours
         -> Object     -- ^ the now classified object
 predict k p o i
     | reliable o = error "Should not classify a reliable object."
-    | otherwise = o { label = Just predicted, neighbours = Just neighboursNames }
-    where predicted = p . map (\(_, c, _) -> c) $ ns
-          ns = nearestNeighbours k o i
+    | otherwise  = o { label = Just predicted, neighbours = Just neighboursNames }
+    where predicted       = p . map (\(_, c, _) -> c) $ ns
+          ns              = nearestNeighbours k o i
           neighboursNames = map (\(n, _, _) -> n) ns
 
 -- | Predict class for the whole input
@@ -48,4 +48,4 @@ predictInput k p i = i { objects = objects' }
     where objects' = map classify (objects i)
           classify o
             | isJust . label $ o = o
-            | otherwise           = predict k p o i
+            | otherwise          = predict k p o i

@@ -46,4 +46,5 @@ parseObject _ _ = error "Malformed entity value..."
 
 -- | Parsing an evaluating set
 parseEvaluatingCSVFile :: Text -> Int -> [Object]
-parseEvaluatingCSVFile content i = map (parseObject i . map T.strip . T.splitOn ",") . T.lines $ content
+parseEvaluatingCSVFile content i =
+    map (parseObject i . map T.strip . T.splitOn ",") . T.lines $ content

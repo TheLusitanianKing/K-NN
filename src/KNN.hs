@@ -2,7 +2,7 @@
 
 -- |
 -- Module      : KNN
--- Description : k-nn algorithm + scaling, distances and so on.
+-- Description : k-nn algorithm, scaling and distances
 -- License     : MIT
 -- Maintainer  : The Lusitanian King <alexlusitanian@gmail.com>
 module KNN where

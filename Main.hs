@@ -14,17 +14,20 @@ import Prediction (classification, predictInput, regression)
 import System.Environment (getArgs)
 import Text.Read (readMaybe)
 
+-- | Default k for k-nn algorithm (will be used when no k is explicitely passed)
+defaultK :: Int
+defaultK = 5
+
 main :: IO ()
 main = do
     args <- getArgs
-    -- retrieving k in k-NN
-    let defaultK = 5
+    -- retrieving k in k-nn (will use default k if none is explicitely passed)
     let k = (if length args == 1 then fromMaybe defaultK $ readMaybe (head args) else defaultK)
     -- retrieve CSV files
     learningCSV            <- T.IO.readFile "data/football/learning.csv"
     classificationInputCSV <- T.IO.readFile "data/football/classification/input.csv"
     regressionInputCSV     <- T.IO.readFile "data/football/regression/input-stadium.csv"
-    regressionInputCSV'     <- T.IO.readFile "data/football/regression/input-european.csv"
+    regressionInputCSV'    <- T.IO.readFile "data/football/regression/input-european.csv"
     -- k-nn classification
     knnClassification k 5 $ learningCSV `T.append` "\n" `T.append` classificationInputCSV
     putStrLn []
