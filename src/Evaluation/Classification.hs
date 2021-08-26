@@ -13,7 +13,8 @@ import Input (Input(..), Object(..), Value, unreliableObjects)
 score :: Input      -- ^ input with everything predicted
       -> [Object]   -- ^ list of objects from the evaluation set
       -> Value      -- ^ score (from 0 to 1)
-score = evaluating . unreliableObjects
-    where evaluating os1 os2 = sum scores / total
-            where total  = fromIntegral $ length scores
-                  scores = zipWith (\o1 o2 -> if label o1 == label o2 then 1 else 0) os1 os2
+score = eval . unreliableObjects
+    where
+        eval os1 os2 = let scs = scores os1 os2 in sum scs / total scs
+        total scs = fromIntegral . length $ scs
+        scores = zipWith (\o1 o2 -> if _label o1 == _label o2 then 1 else 0)

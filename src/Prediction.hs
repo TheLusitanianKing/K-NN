@@ -33,8 +33,8 @@ predict :: Int        -- ^ how many neighbours
         -> Input      -- ^ the scaled input to be used
         -> Object     -- ^ the now classified object
 predict k p o i
-    | reliable o = error "Should not classify a reliable object."
-    | otherwise  = o { label = Just predicted, neighbours = Just neighboursNames }
+    | _reliable o = error "Should not classify a reliable object."
+    | otherwise  = o { _label = Just predicted, _neighbours = Just neighboursNames }
     where predicted       = p . map (\(_, c, _) -> c) $ ns
           ns              = nearestNeighbours k o i
           neighboursNames = map (\(n, _, _) -> n) ns
@@ -44,8 +44,8 @@ predictInput :: Int        -- ^ how many neighbours
              -> Prediction -- ^ the prediction style used
              -> Input      -- ^ scaled input with non-classified objects
              -> Input      -- ^ input with all its objects classified
-predictInput k p i = i { objects = objects' }
-    where objects' = map classify (objects i)
+predictInput k p i = i { _objects = objects' }
+    where objects' = map classify (_objects i)
           classify o
-            | isJust . label $ o = o
+            | isJust . _label $ o = o
             | otherwise          = predict k p o i

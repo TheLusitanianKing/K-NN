@@ -21,11 +21,11 @@ parseCSVFile content i = parse . map (map T.strip . T.splitOn ",") . T.lines $ c
               if i >= length columns
               then error "Could not find the class/variable to predict in the CSV."
               else
-                  Input {
-                      -- to make it easier, we suppose the class will always have a - indicating a missing value
-                      weighs  = map (read . T.unpack) (filter (/="-") ws),
-                      objects = map (parseObject i) os
-                  }
+                  -- to make it easier, we suppose the class will always have a - indicating a missing value
+                  Input
+                    { _weighs  = map (read . T.unpack) (filter (/="-") ws)
+                    , _objects = map (parseObject i) os
+                    }
           parse _ = error "Missing data in the parsed CSV."
 
 -- | Parsing a single object
@@ -35,13 +35,13 @@ parseObject :: Int    -- the index where the class is
 parseObject i (n:values) =
     let v  = values !! i                               -- retrieving class value
         vs = let (a, _:b) = splitAt i values in a ++ b -- removing class from the variables
-    in Object {
-        name       = T.strip n,
-        features   = map (read . T.unpack) vs,
-        label      = if v == "-" then Nothing else return $ (read . T.unpack) v,
-        reliable   = v /= "-",
-        neighbours = Nothing
-    }
+    in Object
+        { _name       = T.strip n
+        , _features   = map (read . T.unpack) vs
+        , _label      = if v == "-" then Nothing else return $ (read . T.unpack) v
+        , _reliable   = v /= "-"
+        , _neighbours = Nothing
+        }
 parseObject _ _ = error "Malformed entity value..."
 
 -- | Parsing an evaluating set
