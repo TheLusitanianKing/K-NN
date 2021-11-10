@@ -1,92 +1,99 @@
-# k-nearest neighbours ![Haskell CI](https://github.com/TheLusitanianKing/K-NN/workflows/Haskell%20CI/badge.svg)
-Simple k-nearest neighbours algorithm for demonstration purposes.
+:england: [English version/Versão inglesa](README-en.md)
+***
 
-## What is this algorithm about?
-### Purpose
-The k-nn algorithm is mainly used for 2 purposes:
-- **k-nn classification**: determine the class of an object by identifying its **k** nearest neighbours and assigning the most common class among them.
-- **k-nn regression**: determine a feature of an object by identifying its **k** nearest neighbours and assigning the average value of the feature for those neighbours.
+# k-vizinhos mais próximos ![Haskell CI](https://github.com/TheLusitanianKing/K-NN/workflows/Haskell%20CI/badge.svg)
+Algoritmo dos k-vizinhos mais próximos.
 
-### How are distances calculated?
-Commonly used when using continuous variables is the [Euclidean distance](https://en.wikipedia.org/wiki/Euclidean_distance). In my case, I first scaled all the features between `[0, 1]` then used the *weighted* Euclidean distance.
+## Em que consiste este algoritmo?
+### Finalidades
+O algoritmo tem duas finalidades:
+- **classificação k-vmp**: determinar a classe de um objecto encontrando os **k** vizinhos mais próximos e dando a classe mais comum entre esses vizinhos.
+- **regressão k-vmp**: determinar uma variável de um objecto encontrando os **k** vizinhos mais próximos e dando a média desta variável entre esses vizinhos.
 
-## Usage
-Basically run the script this way: `cabal run :k-nn 5` modifying k as you want.
+### Como calcular as distâncias entre dois objectos?
+Comummente usado quando se tratam de variáveis contínuas é a [distância Euclidiana](https://pt.wikipedia.org/wiki/Distância_euclidiana). No meu caso, redimensionei todas as variáveis entre `[0, 1]` e usei a distância Euclidiana *ponderada*.
 
-## Classification
-### Scenario
-I used data from major European football clubs that I mainly collected from [Transfermarkt](https://www.transfermarkt.pt). Each football club has:
-- A name (for identifying purposes only),
-- A stadium capacity,
-- A number of major European trophies,
-- A number of major domestic trophies,
-- An estimated market value by [Transfermarkt](https://www.transfermarkt.pt) *(as of January 18th, 2021)*,
-- And a number of international players.
+## Instruções
+Simplesmente `cabal run :k-nn 5`, modificando **k** à vontade, aqui é `5` mas podia ser `7` ou qualquer outro valor.
 
-The idea is, just by looking at those features: **predict whether a club is playing in Europe or not this season** (it doesn't matter if it is the Champions League or the Europa League).
+## Classificação
+### Contexto
+Usei dados dos maiores clubes europeus de futebol baseando-me no [Transfermarkt](https://www.transfermarkt.pt).
+Cada clube tem:
+- Um nome (principalmente para identificá-lo),
+- Uma capacidade de estádio (em termos de assistência máxima),
+- Um número de troféus Europeus (importantes) ganhos,
+- Um número de troféus Nacionais (importantes) ganhos,
+- Um valor de plantel avaliado por [Transfermarkt](https://www.transfermarkt.pt) *(no dia 18 de janeiro de 2021)*,
+- E um número de jogadores internacionais dentro do plantel.
 
-The learning data will consist of the clubs from: Portugal (Liga Nos), France (Ligue 1), the Netherlands (Eredivisie), England (Premier League), Scotland (Scottish Premiership), Russia (Premier Liga), Germany (Bundesliga) and Spain (La Liga).
+**N.B.**: no que diz respeito à contagem dos troféus, quando escrevo *importantes*, é no sentido que não serão contados troféus considerados poucos relevantes, como por exemplo um campeonato de segunda divisão, uma *Taça dos Clubes Vencedores de Taças*, uma *Taça Latina*, etc.
 
-For all the Italian clubs from the Serie A, we want to try to predict whether or not they are playing in Europe this season (2020-2021).
+A ideia é simples, só olhando para estas variáveis: **predizer se um clube está (ou não) à jogar na Europa esta temporada** (não importa se for na Liga dos Campeões ou na Liga Europa).
 
-It is also good to know that each features has a **weigh**, for example, I decided that the *stadium capacity* or the *number of international players* of the club isn't as important to determine to probability of the club playing in Europe than its *past European success* and its *estimated market value*. You can change the weighs easily by modifying the input CSV.
+Os dados de aprendizagem consistarão de clubes de: Portugal (Liga Nos), França (Ligue 1), Países Baixos (Eredivisie), Inglaterra (Premier League), Escócia (Campeonato Escocês), Rússia (Premier Liga), Alemanha (Bundesliga) e Espanha (La Liga).
 
-### Evaluating
-#### Results
-| k  | Good predictions |
-|----|------------------|
-| 3  | 85%              |
-| 5  | 85%              |
-| 7  | 95%              |
-| 9  | 85%              |
-| 11 | 90%              |
+Para todos os clubes italianos da Serie A, queremos predizer se estão à jogar na Europa esta temporada (ou seja 2020-2021).
 
-Football is a pretty unpredictable sport so I think the results are pretty good, although it is also possible to play with the weighs of each feature to try to make it more accurate.
+É importante notar que todas estas variáveis têm um **peso**, por exemplo, decidi que a *capacidade do estádio* ou o *número de jogadores internacionais no plantel* não é tão importante para determinar a probabilidade de o clube jogar na Europa do que o seu *passado Europeu* e a *avaliação do seu valor de plantel*. Pode mudar esses pesos facilmente modificando o CSV de entrada.
 
-## Regression
-### Scenario
-For the regression I used the same data, except this time, the idea is about **predicting the stadium capacity** (and **the number of major European trophies won**) of a Italian club from the Serie A knowing the club characterics (based on the same as above + if they are playing in Europe or not).
+### Avaliação
+#### Resultados
+| k  | Boas predições |
+|----|----------------|
+| 3  | 85%            |
+| 5  | 85%            |
+| 7  | 95%            |
+| 9  | 85%            |
+| 11 | 90%            |
 
-### Example
-Based on the club characteristics, and with **k=9**, here are some predictions for the stadium capacity:
-| Club                     | Prediction | Actual value  |
-|--------------------------|------------|---------------|
-| FC Internazionale Milano | 61 686     | 80 018        |
-| SSC Napoli               | 50 995     | 54 726        |
-| ACF Fiorentina           | 47 120     | 47 282        |
-| FC Crotone               | 16 189     | 16 547        |
+O futebol é um desportivo bastante imprevisível portanto acredito que os resultados sejam óptimos, embora seja possível experimentar e mudar os pesos de cada variável para obter ainda melhores resultados.
 
-As you can see, some values are pretty far off and some are actually pretty accurate.
+## Regressão
+### Contexto
+Para a regressão, usei os mesmos dados. A ideia agora é **prever a capacidade do estádio** (e **o número de troféus Europeus ganhos**) de um clube italiano da Serie A sabendo das características do clube.
 
-### Evaluating
-I used the [R Squared](https://en.wikipedia.org/wiki/Coefficient_of_determination) to mesure the quality of the k-nn regression. Its value is between -∞ and 1:
-- A R Squared of 1 being the best where the predicted values exactly match the actual values,
-- A R Squared of 0 being a model that always predicts the mean value,
-- And a negative R Squared have worse predictions than the R Squared of 0.
+### Exemplo
+Baseado nas características do clube, e com **k=9**, eis umas predições para as capacidades dos estádios:
+| Clube                    | Predição | Capacidade real |
+|--------------------------|----------|-----------------|
+| FC Internazionale Milano | 61 686   | 80 018          |
+| SSC Napoli               | 50 995   | 54 726          |
+| ACF Fiorentina           | 47 120   | 47 282          |
+| FC Crotone               | 16 189   | 16 547          |
 
-#### Results for predicting stadium capacity
-| k  | R Squared |
-|----|-----------|
-| 3  | 0.29      |
-| 5  | 0.39      |
-| 7  | 0.36      |
-| 9  | 0.43      |
-| 11 | 0.42      |
-| 13 | 0.41      |
-| 15 | 0.38      |
+Como pode observar, algumas predições são muito erradas, outras são bastante boas.
 
-#### Results for predicting major European trophies won
-| k  | R Squared |
-|----|-----------|
-| 3  | 0.31      |
-| 5  | 0.34      |
-| 7  | 0.39      |
-| 9  | 0.49      |
-| 11 | 0.44      |
-| 13 | 0.63      |
-| 15 | 0.58      |
+### Avaliação
+Usei o [R-quadrado](https://pt.wikipedia.org/wiki/Coeficiente_de_determinação) para avaliar a qualidade da regressão.
+O valor de um R-quadrado é sempre entre -∞ e 1:
+- Um R-quadrado de 1 sendo o melhor: significa que as predições são exatamente as mesmas que os valores reais,
+- Um R-quadrado de 0 sendo um modelo que vai prever sempre a média de todos os valores,
+- E um R-quadrado negativo sendo um modelo que vai prever piores valores do que um R-quadrado de 0.
 
-Both the *stadium capacity* and the *number of major European trophies won* are very hard to predict from the data we have, so the results are far from perfect but it is a nice illustration of what we can do with k-nn regression.
+#### Resultado nas predições das capacidades dos estádios
+| k  | R-quadrado |
+|----|------------|
+| 3  | 0.29       |
+| 5  | 0.39       |
+| 7  | 0.36       |
+| 9  | 0.43       |
+| 11 | 0.42       |
+| 13 | 0.41       |
+| 15 | 0.38       |
 
-## License
-See [LICENSE](LICENSE) file.
+#### Resultado nas predições dos troféus Europeus ganhos
+| k  | R-quadrado |
+|----|------------|
+| 3  | 0.31       |
+| 5  | 0.34       |
+| 7  | 0.39       |
+| 9  | 0.49       |
+| 11 | 0.44       |
+| 13 | 0.63       |
+| 15 | 0.58       |
+
+Ambos as *capacidades dos estádios* e os *números de troféus Europeus ganhos* são difíceis de prever a partir dos dados que temos, portanto os resultados não são perfeitos mas é uma boa ilustração do que pode ser feito com regressão k-vmp.
+
+## Licença
+Licença MIT, ler [LICENSE](LICENSE) (em inglês).
